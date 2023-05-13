@@ -1,0 +1,19 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "AI Conferences",
+    "name_for_model": "AIConf",
+    "description_for_human": "Plugin to get information about upcoming AI conferences.",
+    "description_for_model": "Plugin to get information about upcoming AI conferences.",
+    "auth": {
+      "type": "none"
+    },
+    "api": {
+      "type": "openapi",
+      "url": "http://localhost:5023/openapi.yaml",
+      "is_user_authenticated": false
+    },
+    "logo_url": "http://localhost:5023/logo.png",
+    "contact_email": "yuchengli@example.com",
+    "legal_info_url": "http://example.com/AIConf"
+  }
+  

@@ -1,0 +1,88 @@
+openapi: 3.0.1
+info:
+  title: AI Conferences
+  description: Plugin to get information about upcoming AI conferences.
+  version: 'v1'
+servers:
+  - url: http://localhost:5023
+paths:
+  /conf/{confname}:
+    get:
+      operationId: getConfInfo
+      summary: Get information about the conference
+      parameters:
+      - in: path
+        name: confname
+        schema:
+            type: string
+        required: true
+        description: The name of the conference.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getConfInfoResponse'
+  /all:
+    get:
+      operationId: getAllUpcomingConf
+      summary: Get information about all the upcoming conferences
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAllUpcomingConfResponses'
+  /star/{confname}:
+    get:
+      operationId: starAConf
+      summary: Star a conference
+      parameters:
+      - in: path
+        name: confname
+        schema:
+            type: string
+        required: true
+        description: The name of the conference.
+      responses:
+        "200":
+          description: OK
+  /starred:
+    get:
+      operationId: starredConfsInfo
+      summary: Show information of starred conferences
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getStarredConfsResponses'
+
+components:
+  schemas:
+    getConfInfoResponse:
+      type: object
+      properties:
+        link:
+          type: string
+          description: The link to the conference website.
+        place:
+          type: string
+          description: The place where the conference will be held.
+        sub:
+          type: string
+          description: The subfield of AI that the conference is about.
+        deadline:
+          type: string
+          description: The deadline for submitting papers.
+    getAllUpcomingConfResponses:
+      type: array
+      items:
+        $ref: '#/components/schemas/getConfInfoResponse'
+    getStarredConfsResponses:
+      type: array
+      items:
+        $ref: '#/components/schemas/getConfInfoResponse'
